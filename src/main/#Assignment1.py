@@ -30,6 +30,30 @@ def AbsoluteError(p, pStar):
 def RelativeError(p, pstar):
     return AbsoluteError(p, pstar) / numpy.abs(p)
 
+def InfiniteSeries(x, errorOfTenToThe):
+    acceptableError = pow(10, errorOfTenToThe)
+
+    result = 0
+    k = 0
+
+    loop = True
+
+    while(loop):
+        k = k + 1
+        kthTerm = pow(-1, k) * (pow(x, k) / (pow(k, 3)))
+        
+        #result will be the partial sum. we don't need it, but I like
+        #having it
+        result = result + kthTerm
+        
+        #print(f"{k}th Term: {kthTerm}")
+
+        currentError = numpy.abs(kthTerm)
+        if(currentError < acceptableError):
+            loop = False
+
+    return k
+
 floatVal = FloatFromBinString('010000000111111010111001')
 
 float3DigitRounded = float(f"{(floatVal + .0005):.3f}")
@@ -48,7 +72,7 @@ print(RelativeError(floatVal, float3DigitRounded))
 print("")
 
 #problem 5
-print("Problem 5 Answer\n")
+print(f"{InfiniteSeries(1, -4)}\n")
 
 #problem 6
 print("Problem 6 Answer\n")
