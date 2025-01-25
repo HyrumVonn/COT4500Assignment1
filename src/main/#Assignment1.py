@@ -24,13 +24,31 @@ def FloatFromBinString(binary_data):
 
     return sign * pow(2, (exponent - 1023)) * (1 + mantissa)
 
+def AbsoluteError(p, pStar):
+    return numpy.abs(p - pStar)
 
+def RelativeError(p, pstar):
+    return AbsoluteError(p, pstar) / numpy.abs(p)
+
+floatVal = FloatFromBinString('010000000111111010111001')
+
+float3DigitRounded = float(f"{(floatVal + .0005):.3f}")
 #problem 1
-print(f"{floatVal:.5f}\n\n")
+print(f"{floatVal:.5f}\n")
 
 #problem 2
-print(f"{floatVal:.3f}\n\n")
+print(f"{floatVal:.3f}\n")
 
 #problem 3
-print(f"{(floatVal + .0005):.3f}\n\n")
+print(f"{float3DigitRounded}\n")
 
+#problem 4 Errors:
+print(AbsoluteError(floatVal, float3DigitRounded))
+print(RelativeError(floatVal, float3DigitRounded))
+print("")
+
+#problem 5
+print("Problem 5 Answer\n")
+
+#problem 6
+print("Problem 6 Answer\n")
