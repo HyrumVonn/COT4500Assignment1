@@ -30,7 +30,7 @@ def AbsoluteError(p, pStar):
 def RelativeError(p, pstar):
     return AbsoluteError(p, pstar) / numpy.abs(p)
 
-def InfiniteSeries(x, errorOfTenToThe):
+def AlternatingSeries(x, errorOfTenToThe):
     acceptableError = pow(10, errorOfTenToThe)
 
     result = 0
@@ -72,7 +72,7 @@ print(RelativeError(floatVal, float3DigitRounded))
 print("")
 
 #problem 5
-print(f"{InfiniteSeries(1, -4)}\n")
+print(f"{AlternatingSeries(1, -4)}\n")
 
 #problem 6
 print("Problem 6 Answer\n")
