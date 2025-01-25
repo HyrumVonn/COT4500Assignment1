@@ -54,6 +54,49 @@ def AlternatingSeries(x, errorOfTenToThe):
 
     return k
 
+def f(x):
+    return (x + 4) * x * x - 10
+
+def IsNegative(x):
+    if(x < 0):
+        return True
+    else:
+        return False
+
+def ShareSigns(x, y):
+    #if they are both positive or both negative, will be True
+    #otherwise, will be false
+    return IsNegative(x) == IsNegative(y)
+
+def Bisection(a, b, tolerance):
+    #
+    iterations = 0
+    error = tolerance + 1
+    left = a
+    right = b
+
+    while(error >= tolerance):
+        iterations = iterations + 1
+        midpoint = (left + right) / 2
+        fLeft = f(left)
+        fRight = f(right)
+        fMid = f(midpoint)
+
+        temp = 0
+        #if left and mid share a sign, then new midpoint should be between mid and right
+        #visca versca for if right and mid share a sign
+        if(ShareSigns(fLeft, fMid)):
+            temp = right
+            left = midpoint
+        else:
+            temp = left
+            right = midpoint
+
+        error = numpy.abs(temp - midpoint)
+
+    return iterations
+
+
 floatVal = FloatFromBinString('010000000111111010111001')
 
 float3DigitRounded = float(f"{(floatVal + .0005):.3f}")
@@ -75,4 +118,5 @@ print("")
 print(f"{AlternatingSeries(1, -4)}\n")
 
 #problem 6
-print("Problem 6 Answer\n")
+print(f"{Bisection(-4, 7, pow(10, -4))}")
+print(f"The other one\n")
