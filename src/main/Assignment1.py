@@ -1,5 +1,4 @@
-#Assignment 1
-import struct
+#Assignment 1, Hyrum VonNiederhausern
 import numpy
 
 #double precision = 64 bits
