@@ -96,6 +96,25 @@ def Bisection(a, b, tolerance):
 
     return iterations
 
+def derivativeF(x):
+    #f'(x) = 3x^2 + 8x, or (3x + 8)x
+    return (3 * x + 8) * x
+
+def NewtonRaphson(a, b, tolerance):
+    iterations = 0
+    approx = (a + b) / 2
+
+    while(True):
+        iterations = iterations + 1
+        if(derivativeF(approx) != 0):
+            nextApprox = approx - (f(approx) / derivativeF(approx))
+
+            if(numpy.abs(nextApprox - approx) < tolerance):
+                return iterations
+            else:
+                approx = nextApprox
+        else:
+            return f"Unsuccessful: derivative was 0 after {iterations} iterations"
 
 floatVal = FloatFromBinString('010000000111111010111001')
 
@@ -119,4 +138,4 @@ print(f"{AlternatingSeries(1, -4)}\n")
 
 #problem 6
 print(f"{Bisection(-4, 7, pow(10, -4))}")
-print(f"The other one\n")
+print(f"{NewtonRaphson(-4,7, pow(10, -4))}\n")
